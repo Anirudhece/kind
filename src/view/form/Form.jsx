@@ -86,23 +86,29 @@ const Form2 = () => {
         sub="You have the option for monthly and yearly billing."
       />
       <VStack>
-        <Flex
-          p="4"
-          alignItems="center"
-          borderWidth="1px"
-          borderRadius="lg"
-          w="full"
-        >
-          <Flex>
-            <Checkbox  m="2" />
-            <Box m="4">
-              <Text>Online Service</Text>
-              <Text>access to multiplayer games</Text>
-            </Box>
+        {addOns.map((ele, ind) => (
+          <Flex
+            p="2"
+            alignItems="center"
+            borderWidth="1px"
+            borderRadius="lg"
+            w="full"
+          >
+            <Flex>
+              <Checkbox border="gray" m="2" />
+              <Box mb="2" mt="2" mr="4" ml="4">
+                <Text color="blue.800" fontSize="lg" as="b">
+                  {ele.title}
+                </Text>
+                <Text color="gray.500">{ele.description}</Text>
+              </Box>
+            </Flex>
+            <Spacer />
+            <Text color="blue.600" m="2">
+              +${ele.price}/mo
+            </Text>
           </Flex>
-          <Spacer />
-          <Text m="2">+$1/mo</Text>
-        </Flex>
+        ))}
       </VStack>
     </>
   );

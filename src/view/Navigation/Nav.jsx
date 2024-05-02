@@ -76,8 +76,7 @@ const MobileNav = ({ onOpen, ...rest }) => {
       <IconButton
         variant="outline"
         onClick={onOpen}
-        aria-label="open menu"
-        // icon={<FiMenu />}
+        aria-label="open menu"back
       />
 
       <Text fontSize="2xl" ml="8" fontFamily="monospace" fontWeight="bold">
