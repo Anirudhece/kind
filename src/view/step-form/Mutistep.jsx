@@ -9,7 +9,37 @@ import Form4 from "./forms/Form4";
 import { useDispatch, useSelector } from "react-redux";
 
 const Multistep = () => {
-  const renderForm = [<Form1 />, <Form2 />, <Form3 />, <Form4 />];
+  const dummy = {
+    yourInfo: {
+      name: "",
+      email: "",
+      phone: "",
+    }, 
+    plan: {
+      type: "",
+      frequency: "",
+    },
+    addOns: [{ name: "", price: 0 }],
+  };
+  const [formValue, setFormValue] = useState({ ...dummy });
+
+  const updateYouinfo = (value, id) => {
+    setFormValue({
+      ...formValue,
+      yourInfo: {
+        ...formValue.yourInfo,
+        [id]: value,
+      },
+    });
+    console.log(formValue.yourInfo[id]);
+  };
+
+  const renderForm = [
+    <Form1 formValue={formValue} updateYouinfo={updateYouinfo} />,
+    <Form2 />,
+    <Form3 />,
+    <Form4 />,
+  ];
   const dispatch = useDispatch();
   const { currentFormNumber } = useSelector((state) => state.counter);
 

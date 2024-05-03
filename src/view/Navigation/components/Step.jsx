@@ -6,7 +6,6 @@ import { changeCounter } from "../../../redux/slices/counterSlice";
 const Step = ({ stepNum, StepTitle }) => {
   const dispatch = useDispatch();
   const { currentFormNumber } = useSelector((state) => state.counter);
-
   const changeFormNumber = () => {
     currentFormNumber !== stepNum && dispatch(changeCounter({ stepNum }));
   };
