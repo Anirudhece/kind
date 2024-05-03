@@ -24,29 +24,18 @@ const Multistep = () => {
   };
   const [formValue, setFormValue] = useState({ ...dummy });
 
-  const updatePlan = (
-    type = formValue.plan.type,
-    price = formValue.plan.price,
-    frequency = formValue.plan.frequency
-  ) => {
-    setFormValue({
-      ...formValue,
-      plan: {
-        price,
-        type,
-        frequency,
-      },
-    });
+  const updatePlan = (type, price, frequency) => {
+    setFormValue({ ...formValue, plan: { price, type, frequency } });
   };
+
   const updateYouinfo = (value, id) => {
     setFormValue({
       ...formValue,
-      yourInfo: {
-        ...formValue.yourInfo,
-        [id]: value,
-      },
+      yourInfo: { ...formValue.yourInfo, [id]: value },
     });
   };
+
+  const updateAddOns=()=>{}
 
   useEffect(() => {
     console.log(formValue.plan);

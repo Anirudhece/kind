@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TopInfo from "../component/TopInfo";
 import {
   Text,
@@ -28,14 +28,21 @@ const Form2 = ({ updatePlan, formValue }) => {
   const [selectedBox, setSelectedBox] = useState(null);
   const [isYearly, setIsYearly] = useState(false);
 
+  useEffect(() => {
+    // Update state when formValue.plan changes
+    const { type, frequency } = formValue.plan;
+    const selectedIndex = data.findIndex((item) => item.title === type);
+    setSelectedBox(selectedIndex);
+    setIsYearly(frequency === "yearly");
+  }, [formValue.plan]);
+
   const handleBoxClick = (index) => {
     setSelectedBox(index);
     const type = data[index].title;
     const price = data[index].price;
     const frequency = isYearly ? "yearly" : "monthly";
-    updatePlan(type,price,frequency);
+    updatePlan(type, price, frequency);
   };
-
 
   const handleSwitchChange = () => {
     setIsYearly((prevIsYearly) => !prevIsYearly);
@@ -43,7 +50,7 @@ const Form2 = ({ updatePlan, formValue }) => {
     const selectedPlan = data[selectedBox];
     updatePlan(selectedPlan.title, selectedPlan.price, frequency); // Update type and frequency
   };
-  
+
   const data = [
     {
       icon: <PiJoystickFill />,
@@ -122,7 +129,7 @@ const Form2 = ({ updatePlan, formValue }) => {
             size="lg"
             pl="2"
             pr="2"
-            onChange={()=>handleSwitchChange()}
+            onChange={() => handleSwitchChange()}
             isChecked={isYearly}
           />
           <Text
