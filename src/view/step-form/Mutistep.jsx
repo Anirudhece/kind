@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { increment, decrement } from "../../redux/slices/counterSlice";
 import { Box, Spacer, Button, Flex, VStack } from "@chakra-ui/react";
 import Form1 from "./forms/Form1";
@@ -14,15 +14,30 @@ const Multistep = () => {
       name: "",
       email: "",
       phone: "",
-    }, 
+    },
     plan: {
       type: "",
-      frequency: "",
+      frequency: "monthly",
+      price: 0,
     },
     addOns: [{ name: "", price: 0 }],
   };
   const [formValue, setFormValue] = useState({ ...dummy });
 
+  const updatePlan = (
+    type = formValue.plan.type,
+    price = formValue.plan.price,
+    frequency = formValue.plan.frequency
+  ) => {
+    setFormValue({
+      ...formValue,
+      plan: {
+        price,
+        type,
+        frequency,
+      },
+    });
+  };
   const updateYouinfo = (value, id) => {
     setFormValue({
       ...formValue,
@@ -31,12 +46,15 @@ const Multistep = () => {
         [id]: value,
       },
     });
-    console.log(formValue.yourInfo[id]);
   };
+
+  useEffect(() => {
+    console.log(formValue.plan);
+  }, [formValue.plan]);
 
   const renderForm = [
     <Form1 formValue={formValue} updateYouinfo={updateYouinfo} />,
-    <Form2 />,
+    <Form2 formValue={formValue} updatePlan={updatePlan} />,
     <Form3 />,
     <Form4 />,
   ];

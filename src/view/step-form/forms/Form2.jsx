@@ -24,17 +24,26 @@ const theme = extendTheme({
   },
 });
 
-const Form2 = () => {
+const Form2 = ({ updatePlan, formValue }) => {
   const [selectedBox, setSelectedBox] = useState(null);
   const [isYearly, setIsYearly] = useState(false);
 
   const handleBoxClick = (index) => {
     setSelectedBox(index);
+    const type = data[index].title;
+    const price = data[index].price;
+    const frequency = isYearly ? "yearly" : "monthly";
+    updatePlan(type,price,frequency);
   };
+
 
   const handleSwitchChange = () => {
     setIsYearly((prevIsYearly) => !prevIsYearly);
+    const frequency = isYearly ? "monthly" : "yearly"; // Invert the frequency
+    const selectedPlan = data[selectedBox];
+    updatePlan(selectedPlan.title, selectedPlan.price, frequency); // Update type and frequency
   };
+  
   const data = [
     {
       icon: <PiJoystickFill />,
@@ -113,7 +122,7 @@ const Form2 = () => {
             size="lg"
             pl="2"
             pr="2"
-            onChange={handleSwitchChange}
+            onChange={()=>handleSwitchChange()}
             isChecked={isYearly}
           />
           <Text
