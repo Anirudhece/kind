@@ -1,11 +1,17 @@
 import React, { useState } from "react";
 import TopInfo from "../component/TopInfo";
-import { Text, Box, Switch, Flex, ChakraProvider, extendTheme } from "@chakra-ui/react";
-import { PiJoystickFill } from "react-icons/pi"; //1
-import { FaGamepad } from "react-icons/fa6"; //2
-import { IoGameController } from "react-icons/io5"; //3
+import {
+  Text,
+  Box,
+  Switch,
+  Flex,
+  ChakraProvider,
+  extendTheme,
+} from "@chakra-ui/react";
+import { PiJoystickFill } from "react-icons/pi";
+import { FaGamepad } from "react-icons/fa6";
+import { IoGameController } from "react-icons/io5";
 
-// Extend the theme to customize the Switch component
 const theme = extendTheme({
   components: {
     Switch: {
@@ -20,7 +26,15 @@ const theme = extendTheme({
 
 const Form2 = () => {
   const [selectedBox, setSelectedBox] = useState(null);
+  const [isYearly, setIsYearly] = useState(false);
 
+  const handleBoxClick = (index) => {
+    setSelectedBox(index);
+  };
+
+  const handleSwitchChange = () => {
+    setIsYearly((prevIsYearly) => !prevIsYearly);
+  };
   const data = [
     {
       icon: <PiJoystickFill />,
@@ -41,10 +55,6 @@ const Form2 = () => {
       iconBackground: "#433cf4",
     },
   ];
-
-  const handleBoxClick = (index) => {
-    setSelectedBox(index);
-  };
 
   return (
     <ChakraProvider theme={theme}>
@@ -89,7 +99,6 @@ const Form2 = () => {
         </Box>
         <Flex
           alignItems="center"
-          color="blue.800"
           fontSize="md"
           as="b"
           mt="8"
@@ -97,12 +106,28 @@ const Form2 = () => {
           bg="blue.50"
           justifyContent="center"
         >
-          <Text>Monthly</Text>
-          <Switch size="lg" pl="2" pr="2" />
-          <Text>Yearly</Text>
+          <Text as="b" color={!isYearly ? "blue.800" : "gray.500 "} mr={2}>
+            Monthly
+          </Text>
+          <Switch
+            size="lg"
+            pl="2"
+            pr="2"
+            onChange={handleSwitchChange}
+            isChecked={isYearly}
+          />
+          <Text
+            as="b"
+            // fontWeight={isYearly ? "bold" : "normal"}
+            color={isYearly ? "blue.800" : "gray.500 "}
+            ml={2}
+          >
+            Yearly
+          </Text>
         </Flex>
       </>
     </ChakraProvider>
   );
 };
+
 export default Form2;
