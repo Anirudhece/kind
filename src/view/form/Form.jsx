@@ -11,7 +11,12 @@ import {
   FormLabel,
   Input,
   Checkbox,
-  Stack,
+  Table,
+  Tbody,
+  Tfoot,
+  Tr,
+  Th,
+  Td,
 } from "@chakra-ui/react";
 
 import { PiJoystickFill } from "react-icons/pi"; //1
@@ -110,9 +115,9 @@ const Form2 = () => {
             borderRadius="lg"
             p="4"
             bg={selectedBox === ind && "purple.50"}
-            borderColor={selectedBox === ind && "blue.500"} 
+            borderColor={selectedBox === ind && "blue.500"}
             onClick={() => handleBoxClick(ind)}
-            _hover={{ cursor: "pointer" }} 
+            _hover={{ cursor: "pointer" }}
           >
             <Box display="flex" mb="12">
               <Text
@@ -210,14 +215,59 @@ const Form3 = () => {
   );
 };
 
-const Form4= ()=>{
-  return(
+const Form4 = () => {
+  return (
     <>
-      <TopInfo main='Finishing up' sub='Double check everything looks OK before confirming.' />
-    </>
-  )
-}
+      <TopInfo
+        main="Finishing up"
+        sub="Double check everything looks OK before confirming."
+      />
+      <Box>
+        <Table bg='green.50' variant="unstyled">
+          <Tbody>
+            <Tr style={{ borderBottom: "1px solid #CBD5E0" }}>
+              <Td>
+                <Text fontWeight="bold" color="blue.800" fontSize="md">
+                  Arcade (Monthly)
+                </Text>
+                <Button size="sm" textDecoration="underline" variant="link">
+                  Change
+                </Button>
+              </Td>
+              <Td
+                textAlign="right"
+                fontWeight="bold"
+                color="blue.800"
+                fontSize="md"
+              >
+                $9/mo
+              </Td>
+            </Tr>
 
+            <Tr color="gray.400">
+              <Td>Online service</Td>
+              <Td fontWeight="bold" textAlign="right">
+                +$1/mo
+              </Td>
+            </Tr>
+            <Tr color="gray.400">
+              <Td>Larger storage</Td>
+              <Td fontWeight="bold" textAlign="right">
+                +$2/mo
+              </Td>
+            </Tr>
+          </Tbody>
+        </Table>
+        <Flex alignItems="center" justifyContent="space-between" m="6">
+          <Text color="gray.400">Total (per month)</Text>
+          <Text fontSize="lg" as="b" color="#463ef6">
+            +$12/mo
+          </Text>
+        </Flex>
+      </Box>
+    </>
+  );
+};
 
 const Multistep = () => {
   return (
@@ -227,7 +277,7 @@ const Multistep = () => {
           {/* <Form1 /> */}
           {/* <Form2 /> */}
           {/* <Form3 /> */}
-          <Form4/>
+          <Form4 />
         </Box>
 
         <Spacer />
@@ -237,7 +287,7 @@ const Multistep = () => {
             Go Back
           </Button>
           <Spacer />
-          <Button bg="blue.900" colorScheme="facebook" variant="solid">
+          <Button bg="#463ef6" colorScheme="facebook" variant="solid">
             Next Step
           </Button>
         </Flex>
