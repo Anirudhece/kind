@@ -21,7 +21,12 @@ const Form3 = ({ updateAddOns, formValue }) => {
     },
   ];
 
-  const [checkedItems, setCheckedItems] = useState({});
+  const initialCheckedItems = addOns.reduce((acc, _, index) => {
+    acc[index] = formValue.addOns.some((addOn) => addOn.title === addOns[index].title);
+    return acc;
+  }, {});
+
+  const [checkedItems, setCheckedItems] = useState(initialCheckedItems);
 
   const handleCheckboxChange = (index) => {
     setCheckedItems({
@@ -31,11 +36,17 @@ const Form3 = ({ updateAddOns, formValue }) => {
   };
 
   useEffect(() => {
+    const initialChecked = addOns.map((_, index) =>
+      formValue.addOns.some((addOn) => addOn.title === addOns[index].title)
+    );
+    setCheckedItems(initialChecked);
+  }, [formValue.addOns]);
+
+  useEffect(() => {
     const selectedAddOns = addOns
       .filter((_, index) => checkedItems[index])
       .map(({ title, price }) => ({ title, price }));
     updateAddOns(selectedAddOns);
-
   }, [checkedItems]);
 
   return (
@@ -53,7 +64,7 @@ const Form3 = ({ updateAddOns, formValue }) => {
             borderWidth="1px"
             borderRadius="lg"
             w="full"
-            borderColor={checkedItems[ind] ? "blue.600" : "gray.200"} 
+            borderColor={checkedItems[ind] ? "blue.600" : "gray.200"}
           >
             <Flex>
               <Checkbox

@@ -23,6 +23,10 @@ const Multistep = () => {
     addOns: [{ title: "", price: 0 }],
   };
   const [formValue, setFormValue] = useState({ ...dummy });
+  
+  const updateAddOns=(arr)=>{
+    setFormValue({...formValue,addOns:arr})
+  }
 
   const updatePlan = (type, price, frequency) => {
     setFormValue({ ...formValue, plan: { price, type, frequency } });
@@ -35,9 +39,6 @@ const Multistep = () => {
     });
   };
 
-  const updateAddOns=(arr)=>{
-    setFormValue({...formValue,addOns:arr})
-  }
 
   useEffect(() => {
     console.log(formValue);
