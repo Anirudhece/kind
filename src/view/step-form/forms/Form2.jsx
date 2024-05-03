@@ -29,7 +29,6 @@ const Form2 = ({ updatePlan, formValue }) => {
   const [isYearly, setIsYearly] = useState(false);
 
   useEffect(() => {
-    // Update state when formValue.plan changes
     const { type, frequency } = formValue.plan;
     const selectedIndex = data.findIndex((item) => item.title === type);
     setSelectedBox(selectedIndex);
@@ -46,9 +45,9 @@ const Form2 = ({ updatePlan, formValue }) => {
 
   const handleSwitchChange = () => {
     setIsYearly((prevIsYearly) => !prevIsYearly);
-    const frequency = isYearly ? "monthly" : "yearly"; // Invert the frequency
+    const frequency = isYearly ? "monthly" : "yearly"; 
     const selectedPlan = data[selectedBox];
-    updatePlan(selectedPlan.title, selectedPlan.price, frequency); // Update type and frequency
+    updatePlan(selectedPlan.title, selectedPlan.price, frequency); 
   };
 
   const data = [

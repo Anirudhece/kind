@@ -20,7 +20,7 @@ const Multistep = () => {
       frequency: "monthly",
       price: 0,
     },
-    addOns: [{ name: "", price: 0 }],
+    addOns: [{ title: "", price: 0 }],
   };
   const [formValue, setFormValue] = useState({ ...dummy });
 
@@ -35,16 +35,18 @@ const Multistep = () => {
     });
   };
 
-  const updateAddOns=()=>{}
+  const updateAddOns=(arr)=>{
+    setFormValue({...formValue,addOns:arr})
+  }
 
   useEffect(() => {
-    console.log(formValue.plan);
-  }, [formValue.plan]);
+    console.log(formValue);
+  }, [formValue.addOns]);
 
   const renderForm = [
     <Form1 formValue={formValue} updateYouinfo={updateYouinfo} />,
     <Form2 formValue={formValue} updatePlan={updatePlan} />,
-    <Form3 />,
+    <Form3 formValue={formValue} updateAddOns={updateAddOns}/>,
     <Form4 />,
   ];
   const dispatch = useDispatch();

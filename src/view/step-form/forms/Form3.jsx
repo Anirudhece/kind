@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TopInfo from "../component/TopInfo";
 import { Text, Box, Spacer, Flex, VStack, Checkbox } from "@chakra-ui/react";
-const Form3 = () => {
+
+const Form3 = ({ updateAddOns, formValue }) => {
   const addOns = [
     {
       title: "Online Service",
@@ -20,16 +21,22 @@ const Form3 = () => {
     },
   ];
 
-  // State to manage checked status of checkboxes
   const [checkedItems, setCheckedItems] = useState({});
 
-  // Function to handle checkbox state change
   const handleCheckboxChange = (index) => {
     setCheckedItems({
       ...checkedItems,
       [index]: !checkedItems[index],
     });
   };
+
+  useEffect(() => {
+    const selectedAddOns = addOns
+      .filter((_, index) => checkedItems[index])
+      .map(({ title, price }) => ({ title, price }));
+    updateAddOns(selectedAddOns);
+
+  }, [checkedItems]);
 
   return (
     <>
@@ -46,7 +53,7 @@ const Form3 = () => {
             borderWidth="1px"
             borderRadius="lg"
             w="full"
-            borderColor={checkedItems[ind] ? "blue.600" : "gray.200"} // Conditionally set border color
+            borderColor={checkedItems[ind] ? "blue.600" : "gray.200"} 
           >
             <Flex>
               <Checkbox
