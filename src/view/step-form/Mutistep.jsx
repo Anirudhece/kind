@@ -1,22 +1,6 @@
 import React, { useState } from "react";
 import { increment, decrement } from "../../redux/slices/counterSlice";
-import {
-  Heading,
-  Text,
-  Box,
-  Spacer,
-  Button,
-  Flex,
-  VStack,
-  FormControl,
-  FormLabel,
-  Input,
-  Checkbox,
-  Table,
-  Tbody,
-  Tr,
-  Td,
-} from "@chakra-ui/react";
+import { Box, Spacer, Button, Flex, VStack } from "@chakra-ui/react";
 import Form1 from "./forms/Form1";
 import Form2 from "./forms/Form2";
 import Form3 from "./forms/Form3";

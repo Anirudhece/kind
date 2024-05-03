@@ -1,22 +1,6 @@
 import React, { useState } from "react";
 import TopInfo from "../component/TopInfo";
-import {
-  Heading,
-  Text,
-  Box,
-  Spacer,
-  Button,
-  Flex,
-  VStack,
-  FormControl,
-  FormLabel,
-  Input,
-  Checkbox,
-  Table,
-  Tbody,
-  Tr,
-  Td,
-} from "@chakra-ui/react";
+import { Text, Box, Spacer, Flex, VStack, Checkbox } from "@chakra-ui/react";
 const Form3 = () => {
   const addOns = [
     {
