@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { increment, decrement } from "../../redux/slices/counterSlice";
 import {
   Heading,
   Text,
@@ -22,6 +23,8 @@ import {
 import { PiJoystickFill } from "react-icons/pi"; //1
 import { FaGamepad } from "react-icons/fa6"; //2
 import { IoGameController } from "react-icons/io5"; //3
+
+import { useDispatch, useSelector } from "react-redux";
 
 const TopInfo = ({ main, sub }) => {
   return (
@@ -223,7 +226,7 @@ const Form4 = () => {
         sub="Double check everything looks OK before confirming."
       />
       <Box>
-        <Table bg='green.50' variant="unstyled">
+        <Table bg="green.50" variant="unstyled">
           <Tbody>
             <Tr style={{ borderBottom: "1px solid #CBD5E0" }}>
               <Td>
@@ -270,26 +273,45 @@ const Form4 = () => {
 };
 
 const Multistep = () => {
+
+  const renderForm = [<Form1 />, <Form2 />, <Form3 />, <Form4 />];
+  const dispatch = useDispatch();
+  const { currentFormNumber } = useSelector((state) => state.counter);
+
+  const setCounter = (type) => {
+    dispatch(type === "decrement" ? decrement() : increment());
+  };
+
   return (
     <>
       <VStack h="100vh">
         <Box w="60%" mt="6">
-          {/* <Form1 /> */}
-          {/* <Form2 /> */}
-          {/* <Form3 /> */}
-          <Form4 />
+          {renderForm[currentFormNumber]}
         </Box>
 
         <Spacer />
 
         <Flex mb="10" w="60%">
-          <Button color="gray.500" variant="ghost" colorScheme="gray">
-            Go Back
-          </Button>
+          {currentFormNumber > 0 && (
+            <Button
+              onClick={()=> setCounter("decrement")}
+              color="gray.500"
+              variant="ghost"
+              colorScheme="gray"
+            >
+              Go Back
+            </Button>
+          )}
           <Spacer />
-          <Button bg="#463ef6" colorScheme="facebook" variant="solid">
-            Next Step
-          </Button>
+          {currentFormNumber < 3 ? (
+            <Button bg="#463ef6" onClick={()=> setCounter("increment")} colorScheme="facebook" variant="solid">
+              Next Step
+            </Button>
+          ) : (
+            <Button bg="#463ef6" colorScheme="facebook" variant="solid">
+              Confirm
+            </Button>
+          )}
         </Flex>
       </VStack>
     </>

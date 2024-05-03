@@ -10,10 +10,13 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import Step from "./components/Step";
+import { useDispatch } from "react-redux";
 
 const _Points = ["YOUR INFO", "SELECT PLAN", "ADD-ONS", "SUMMARY"];
 
 export default function SimpleSidebar() {
+
+
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <Box
@@ -45,6 +48,7 @@ export default function SimpleSidebar() {
 }
 
 const SidebarContent = ({ onClose, ...rest }) => {
+
   return (
     <Box
       bg={"#463ef6"}
