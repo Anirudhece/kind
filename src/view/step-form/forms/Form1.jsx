@@ -5,10 +5,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateYourInfo } from "../../../redux/slices/formStateSlice";
 
 const Form1 = ({ formValue, updateYouinfo }) => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  const { formState } = useSelector((state) => state.formData);
-  const { name, email, phone } = formState;
+  // const { formState } = useSelector((state) => state.formData);
+  // const { name, email, phone } = formState;
 
   const handleInputChange = (e) => {
     const { value, id } = e.target;
