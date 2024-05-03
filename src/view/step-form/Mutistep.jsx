@@ -59,7 +59,6 @@ const Multistep = () => {
 
   function validateForm(formValue) {
     const errors = {};
-    // Validate yourInfo fields
     if (!formValue.yourInfo.name.trim()) {
       errors.name = "Name is required";
     }
@@ -72,7 +71,6 @@ const Multistep = () => {
       errors.phone = "Phone is required";
     }
 
-    // Validate plan fields
     if (!formValue.plan.type.trim()) {
       errors.type = "Plan type is required";
     }
@@ -86,11 +84,6 @@ const Multistep = () => {
   const handleSubmit = () => {
     const errors = validateForm(formValue);
     if (Object.keys(errors).length === 0) {
-      // <Alert status="success">
-      //   <AlertIcon />
-      //   <AlertTitle>Done Successfully</AlertTitle>
-      //   <AlertDescription>you have availed the service</AlertDescription>
-      // </Alert>;
       toast({
         title: "Done Successfully.",
         description: "you have availed the service",

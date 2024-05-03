@@ -45,9 +45,9 @@ const Form2 = ({ updatePlan, formValue }) => {
 
   const handleSwitchChange = () => {
     setIsYearly((prevIsYearly) => !prevIsYearly);
-    const frequency = isYearly ? "monthly" : "yearly"; 
+    const frequency = isYearly ? "monthly" : "yearly";
     const selectedPlan = data[selectedBox];
-    updatePlan(selectedPlan.title, selectedPlan.price, frequency); 
+    updatePlan(selectedPlan.title, selectedPlan.price, frequency);
   };
 
   const data = [
@@ -79,20 +79,32 @@ const Form2 = ({ updatePlan, formValue }) => {
           sub="You have the option of monthly and yearly billing"
         />
 
-        <Box display="flex" justifyContent="space-between">
+        <Box
+          display={{ base: "block", md: "flex" }}
+          justifyContent="space-between"
+        >
           {data.map((ele, ind) => (
             <Box
+              mt={{ base: "2", md: "0" }}
+              mb={{ base: "2", md: "0" }}
               key={ind}
-              w="30%"
+              w={{ base: "100%", md: "30%" }}
               borderWidth="3px"
               borderRadius="lg"
-              p="4"
+              p={{ base: "1", md: "4" }}
               bg={selectedBox === ind && "green.50"}
               borderColor={selectedBox === ind && "blue.500"}
               onClick={() => handleBoxClick(ind)}
               _hover={{ cursor: "pointer" }}
+              display={{ base: "flex", md: "block" }}
+              alignItems="center"
             >
-              <Box display="flex" mb="12">
+              <Box
+                ml={{ base: "2", md: "0" }}
+                mr={{ base: "6", md: "0" }}
+                display="flex"
+                mb="12"
+              >
                 <Text
                   fontSize="2xl"
                   background={ele.iconBackground}
@@ -103,12 +115,14 @@ const Form2 = ({ updatePlan, formValue }) => {
                   {ele.icon}
                 </Text>
               </Box>
-              <Text color="blue.800" fontSize="lg" as="b">
-                {ele.title}
-              </Text>
-              <Text color="gray.500" fontSize="sm" colorScheme="gray">
-                ${ele.price}/mo
-              </Text>
+              <Box>
+                <Text color="blue.800" fontSize="lg" as="b">
+                  {ele.title}
+                </Text>
+                <Text color="gray.500" fontSize="sm" colorScheme="gray">
+                  ${ele.price}/mo
+                </Text>
+              </Box>
             </Box>
           ))}
         </Box>
@@ -131,12 +145,7 @@ const Form2 = ({ updatePlan, formValue }) => {
             onChange={() => handleSwitchChange()}
             isChecked={isYearly}
           />
-          <Text
-            as="b"
-            // fontWeight={isYearly ? "bold" : "normal"}
-            color={isYearly ? "blue.800" : "gray.500 "}
-            ml={2}
-          >
+          <Text as="b" color={isYearly ? "blue.800" : "gray.500 "} ml={2}>
             Yearly
           </Text>
         </Flex>
