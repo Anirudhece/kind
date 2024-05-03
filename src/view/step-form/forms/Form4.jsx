@@ -1,8 +1,23 @@
 import React, { useState } from "react";
 import TopInfo from "../component/TopInfo";
-import {Text,Button,Box,Flex,Table,Tbody,Tr,Td} from "@chakra-ui/react";
-
+import {
+  Text,
+  Button,
+  Box,
+  Flex,
+  Table,
+  Tbody,
+  Tr,
+  Td,
+} from "@chakra-ui/react";
+import { useDispatch } from "react-redux";
+import { changeCounter } from "../../../redux/slices/counterSlice";
 const Form4 = () => {
+  const dispatch = useDispatch();
+
+  const routeToChangeMonth = () => {
+    dispatch(changeCounter({stepNum:1}));
+  };
   return (
     <>
       <TopInfo
@@ -17,7 +32,12 @@ const Form4 = () => {
                 <Text fontWeight="bold" color="blue.800" fontSize="md">
                   Arcade (Monthly)
                 </Text>
-                <Button size="sm" textDecoration="underline" variant="link">
+                <Button
+                  size="sm"
+                  onClick={routeToChangeMonth}
+                  textDecoration="underline"
+                  variant="link"
+                >
                   Change
                 </Button>
               </Td>
