@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { increment, decrement } from "../../redux/slices/counterSlice";
-import { Box, Spacer, Button, Flex, VStack } from "@chakra-ui/react";
+import { Box, Spacer, Button, Flex, VStack, useToast } from "@chakra-ui/react";
 import Form1 from "./forms/Form1";
 import Form2 from "./forms/Form2";
 import Form3 from "./forms/Form3";
@@ -9,6 +9,7 @@ import Form4 from "./forms/Form4";
 import { useDispatch, useSelector } from "react-redux";
 
 const Multistep = () => {
+  const toast = useToast();
   const dummy = {
     yourInfo: {
       name: "",
@@ -23,10 +24,10 @@ const Multistep = () => {
     addOns: [{ title: "", price: 0 }],
   };
   const [formValue, setFormValue] = useState({ ...dummy });
-  
-  const updateAddOns=(arr)=>{
-    setFormValue({...formValue,addOns:arr})
-  }
+
+  const updateAddOns = (arr) => {
+    setFormValue({ ...formValue, addOns: arr });
+  };
 
   const updatePlan = (type, price, frequency) => {
     setFormValue({ ...formValue, plan: { price, type, frequency } });
@@ -39,7 +40,6 @@ const Multistep = () => {
     });
   };
 
-
   useEffect(() => {
     console.log(formValue);
   }, [formValue.addOns]);
@@ -47,14 +47,68 @@ const Multistep = () => {
   const renderForm = [
     <Form1 formValue={formValue} updateYouinfo={updateYouinfo} />,
     <Form2 formValue={formValue} updatePlan={updatePlan} />,
-    <Form3 formValue={formValue} updateAddOns={updateAddOns}/>,
-    <Form4 />,
+    <Form3 formValue={formValue} updateAddOns={updateAddOns} />,
+    <Form4 formValue={formValue} />,
   ];
   const dispatch = useDispatch();
   const { currentFormNumber } = useSelector((state) => state.counter);
 
   const setCounter = (type) => {
     dispatch(type === "decrement" ? decrement() : increment());
+  };
+
+  function validateForm(formValue) {
+    const errors = {};
+    // Validate yourInfo fields
+    if (!formValue.yourInfo.name.trim()) {
+      errors.name = "Name is required";
+    }
+    if (!formValue.yourInfo.email.trim()) {
+      errors.email = "Email is required";
+    } else if (!/\S+@\S+\.\S+/.test(formValue.yourInfo.email)) {
+      errors.email = "Email is invalid";
+    }
+    if (!formValue.yourInfo.phone.trim()) {
+      errors.phone = "Phone is required";
+    }
+
+    // Validate plan fields
+    if (!formValue.plan.type.trim()) {
+      errors.type = "Plan type is required";
+    }
+    if (formValue.plan.price <= 0) {
+      errors.price = "Price must be greater than 0";
+    }
+
+    return errors;
+  }
+
+  const handleSubmit = () => {
+    const errors = validateForm(formValue);
+    if (Object.keys(errors).length === 0) {
+      // <Alert status="success">
+      //   <AlertIcon />
+      //   <AlertTitle>Done Successfully</AlertTitle>
+      //   <AlertDescription>you have availed the service</AlertDescription>
+      // </Alert>;
+      toast({
+        title: "Done Successfully.",
+        description: "you have availed the service",
+        status: "success",
+        duration: 9000,
+        isClosable: true,
+      });
+    } else {
+      toast({
+        title: "there is an error.",
+        description: JSON.stringify(errors),
+        status: "warning",
+        duration: 9000,
+        isClosable: true,
+      });
+
+      console.log(errors);
+    }
   };
 
   return (
@@ -88,7 +142,12 @@ const Multistep = () => {
               Next Step
             </Button>
           ) : (
-            <Button bg="#463ef6" colorScheme="facebook" variant="solid">
+            <Button
+              onClick={handleSubmit}
+              bg="#463ef6"
+              colorScheme="facebook"
+              variant="solid"
+            >
               Confirm
             </Button>
           )}

@@ -12,12 +12,23 @@ import {
 } from "@chakra-ui/react";
 import { useDispatch } from "react-redux";
 import { changeCounter } from "../../../redux/slices/counterSlice";
-const Form4 = () => {
+const Form4 = ({ formValue }) => {
+  const { yourInfo, plan, addOns } = formValue;
   const dispatch = useDispatch();
 
   const routeToChangeMonth = () => {
-    dispatch(changeCounter({stepNum:1}));
+    dispatch(changeCounter({ stepNum: 1 }));
   };
+  const totalPrice = () => {
+    let temp = plan.frequency === "monthly" ? +plan.price : +plan.price * 10;
+    let accu = addOns.reduce((acc, ele) => {
+      return plan.frequency === "monthly"
+        ? acc + +ele.price
+        : acc + +ele.price * 10;
+    }, 0);
+    return temp + accu;
+  };
+
   return (
     <>
       <TopInfo
@@ -30,7 +41,7 @@ const Form4 = () => {
             <Tr style={{ borderBottom: "1px solid #CBD5E0" }}>
               <Td>
                 <Text fontWeight="bold" color="blue.800" fontSize="md">
-                  Arcade (Monthly)
+                  {plan.type} ({plan.frequency})
                 </Text>
                 <Button
                   size="sm"
@@ -47,28 +58,27 @@ const Form4 = () => {
                 color="blue.800"
                 fontSize="md"
               >
-                $9/mo
+                ${plan.frequency === "monthly" ? plan.price : plan.price * 10}/
+                {plan.frequency === "monthly" ? "mo" : "yr"}
               </Td>
             </Tr>
-
-            <Tr color="gray.400">
-              <Td>Online service</Td>
-              <Td fontWeight="bold" textAlign="right">
-                +$1/mo
-              </Td>
-            </Tr>
-            <Tr color="gray.400">
-              <Td>Larger storage</Td>
-              <Td fontWeight="bold" textAlign="right">
-                +$2/mo
-              </Td>
-            </Tr>
+            {addOns.map((ele, ind) => (
+              <Tr color="gray.400">
+                <Td>{ele.title}</Td>
+                <Td fontWeight="bold" textAlign="right">
+                  +${plan.frequency === "monthly" ? ele.price : ele.price * 10}/
+                  {plan.frequency === "monthly" ? "mo" : "yr"}
+                </Td>
+              </Tr>
+            ))}
           </Tbody>
         </Table>
         <Flex alignItems="center" justifyContent="space-between" m="6">
-          <Text color="gray.400">Total (per month)</Text>
+          <Text color="gray.400">
+            Total (per {plan.frequency === "monthly" ? "month" : "year"})
+          </Text>
           <Text fontSize="lg" as="b" color="#463ef6">
-            +$12/mo
+            +${totalPrice()}/{plan.frequency === "monthly" ? "mo" : "yr"}
           </Text>
         </Flex>
       </Box>
