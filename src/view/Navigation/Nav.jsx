@@ -10,7 +10,6 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import Step from "./components/Step";
-import { useDispatch } from "react-redux";
 
 const _Points = ["YOUR INFO", "SELECT PLAN", "ADD-ONS", "SUMMARY"];
 
@@ -53,8 +52,10 @@ const SidebarContent = () => {
 
 const MobileNav = () => {
   return (
-    <Flex height="20" bg='#463ef6' display={{ base: "flex", md: "none" }}>
-
+    <Flex height="20" bg='#463ef6' justifyContent='center' alignItems='center' display={{ base: "flex", md: "none" }}>
+      {_Points.map((ele, ind) => (
+        <Step key={ele} stepNum={ind} StepTitle={ele} active={0} />
+      ))}
     </Flex>
   );
 };
