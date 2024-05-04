@@ -106,7 +106,7 @@ const Multistep = () => {
 
   return (
     <>
-      <VStack h={{ base: "87vh", md: "100vh" }}>
+      <VStack h={{ base: "85vh", md: "100vh" }}>
         <Box w={{ base: "70%", md: "60%" }} mt={{ base: "2", md: "6" }}>
           {renderForm[currentFormNumber]}
         </Box>

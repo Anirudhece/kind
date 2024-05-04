@@ -22,7 +22,9 @@ const Form3 = ({ updateAddOns, formValue }) => {
   ];
 
   const initialCheckedItems = addOns.reduce((acc, _, index) => {
-    acc[index] = formValue.addOns.some((addOn) => addOn.title === addOns[index].title);
+    acc[index] = formValue.addOns.some(
+      (addOn) => addOn.title === addOns[index].title
+    );
     return acc;
   }, {});
 
@@ -69,19 +71,36 @@ const Form3 = ({ updateAddOns, formValue }) => {
             <Flex>
               <Checkbox
                 border="gray"
+                display="flex"
                 m="2"
                 isChecked={checkedItems[ind]}
                 onChange={() => handleCheckboxChange(ind)}
               />
-              <Box mb="2" mt="2" mr="4" ml="4">
-                <Text color="blue.800" fontSize="lg" as="b">
+
+              <Box
+                mb="2"
+                mt="2"
+                mr={{ base: "2", md: "4" }}
+                ml={{ base: "2", md: "4" }}
+              >
+                <Text
+                  color="blue.800"
+                  fontSize={{ base: "sm", md: "lg" }}
+                  as="b"
+                >
                   {ele.title}
                 </Text>
-                <Text color="gray.500">{ele.description}</Text>
+                <Text fontSize={{ base: "xs" }} color="gray.500">
+                  {ele.description}
+                </Text>
               </Box>
             </Flex>
             <Spacer />
-            <Text color="blue.600" m="2">
+            <Text
+              fontSize={{ base: "xs" }}
+              color="blue.600"
+              m={{ base: "0", md: "2" }}
+            >
               +${ele.price}/mo
             </Text>
           </Flex>
