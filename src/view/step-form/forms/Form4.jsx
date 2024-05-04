@@ -56,7 +56,7 @@ const Form4 = ({ formValue }) => {
                 textAlign="right"
                 fontWeight="bold"
                 color="blue.800"
-                fontSize="md"
+                fontSize={{base:'sm',md:'md'}}
               >
                 ${plan.frequency === "monthly" ? plan.price : plan.price * 10}/
                 {plan.frequency === "monthly" ? "mo" : "yr"}
@@ -65,7 +65,7 @@ const Form4 = ({ formValue }) => {
             {addOns.map((ele, ind) => (
               <Tr color="gray.400">
                 <Td>{ele.title}</Td>
-                <Td fontWeight="bold" textAlign="right">
+                <Td fontSize={{base:'sm'}} fontWeight="bold" textAlign="right">
                   +${plan.frequency === "monthly" ? ele.price : ele.price * 10}/
                   {plan.frequency === "monthly" ? "mo" : "yr"}
                 </Td>
@@ -73,11 +73,11 @@ const Form4 = ({ formValue }) => {
             ))}
           </Tbody>
         </Table>
-        <Flex alignItems="center" justifyContent="space-between" m="6">
-          <Text color="gray.400">
+        <Flex alignItems="center" justifyContent="space-between" m={{ base: "3",md:'6' }}>
+          <Text fontSize={{base:'md'}} color="gray.400">
             Total (per {plan.frequency === "monthly" ? "month" : "year"})
           </Text>
-          <Text fontSize="lg" as="b" color="#463ef6">
+          <Text  fontSize={{base:'md',md:'lg'}} as="b" color="#463ef6">
             +${totalPrice()}/{plan.frequency === "monthly" ? "mo" : "yr"}
           </Text>
         </Flex>
