@@ -2,17 +2,11 @@ import React, { useEffect } from "react";
 import TopInfo from "../component/TopInfo";
 import { Box, FormControl, FormLabel, Input } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateYourInfo } from "../../../redux/slices/formStateSlice";
 
 const Form1 = ({ formValue, updateYouinfo }) => {
-  // const dispatch = useDispatch();
-
-  // const { formState } = useSelector((state) => state.formData);
-  // const { name, email, phone } = formState;
 
   const handleInputChange = (e) => {
     const { value, id } = e.target;
-    dispatch(updateYourInfo({ value, id }));
     updateYouinfo(value, id);
   };
 
@@ -26,7 +20,6 @@ const Form1 = ({ formValue, updateYouinfo }) => {
         <FormControl>
           <FormLabel htmlFor="name">Name</FormLabel>
           <Input
-            // value={name}
             value={formValue.yourInfo.name}
             onChange={handleInputChange}
             id="name"
@@ -37,7 +30,6 @@ const Form1 = ({ formValue, updateYouinfo }) => {
         <FormControl mt="6">
           <FormLabel htmlFor="email">Email address</FormLabel>
           <Input
-            // value={email}
             value={formValue.yourInfo.email}
             onChange={handleInputChange}
             id="email"
@@ -51,7 +43,6 @@ const Form1 = ({ formValue, updateYouinfo }) => {
             Phone Number
           </FormLabel>
           <Input
-            // value={phone}
             value={formValue.yourInfo.phone}
             onChange={handleInputChange}
             id="phone"
