@@ -107,7 +107,7 @@ const Multistep = () => {
   return (
     <>
       <VStack
-        h={{ base: "74vh", md: "100vh" }}
+        // h={{ base: "74vh", md: "100vh" }}
         bg={{
           base: 'purple.50',
           md: 'none'
@@ -127,6 +127,12 @@ const Multistep = () => {
           bg={{ base: "white" }}
           p={{ base: 2 }}
           w={{ base: "100%", md: "60%" }}
+
+          position={{ base: "fixed", md: "static" }}
+          bottom="0"
+          left="0"
+          right="0"
+          zIndex="999"
         >
           {currentFormNumber > 0 && (
             <Button
@@ -162,6 +168,7 @@ const Multistep = () => {
             </Button>
           )}
         </Flex>
+
       </VStack>
     </>
   );

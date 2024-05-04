@@ -116,11 +116,7 @@ const Form2 = ({ updatePlan, formValue }) => {
                 </Text>
               </Box>
               <Box>
-                <Text
-                  color="blue.800"
-                  fontSize={{ base: "md", md: "lg" }}
-                  as="b"
-                >
+                <Text color="blue.800" fontSize={{ base: "md", md: "lg" }} as="b" >
                   {ele.title}
                 </Text>
                 <Text
@@ -134,25 +130,11 @@ const Form2 = ({ updatePlan, formValue }) => {
             </Box>
           ))}
         </Box>
-        <Flex
-          alignItems="center"
-          fontSize="md"
-          as="b"
-          mt="8"
-          p="4"
-          bg="blue.50"
-          justifyContent="center"
-        >
+        <Flex alignItems="center" fontSize="md" as="b" mt="8" p="4" bg="blue.50" justifyContent="center"  >
           <Text as="b" color={!isYearly ? "blue.800" : "gray.500 "} mr={2}>
             Monthly
           </Text>
-          <Switch
-            size="lg"
-            pl="2"
-            pr="2"
-            onChange={() => handleSwitchChange()}
-            isChecked={isYearly}
-          />
+          <Switch size="lg" pl="2" pr="2" onChange={() => handleSwitchChange()} isChecked={isYearly} />
           <Text as="b" color={isYearly ? "blue.800" : "gray.500 "} ml={2}>
             Yearly
           </Text>

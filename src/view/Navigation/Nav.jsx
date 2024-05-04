@@ -14,12 +14,12 @@ export default function SimpleSidebar() {
   return (
     <Box
       fontFamily="monospace"
-      bg={useColorModeValue("gray.100", "gray.900")}
+      // bg={useColorModeValue("gray.100", "gray.900")}
     >
       <SidebarContent />
       <Drawer
         placement="left"
-        size="full"
+        // size="full"
       >
         <DrawerContent>
           <SidebarContent />
