@@ -15,47 +15,34 @@ import { useDispatch } from "react-redux";
 const _Points = ["YOUR INFO", "SELECT PLAN", "ADD-ONS", "SUMMARY"];
 
 export default function SimpleSidebar() {
-
-
-  const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <Box
-      // maxW='60'
       fontFamily="monospace"
-      // minH="100vh"
       bg={useColorModeValue("gray.100", "gray.900")}
     >
-      <SidebarContent
-        // onClose={() => onClose}
-        display={{ base: "none", md: "block" }}
-      />
+      <SidebarContent />
       <Drawer
-        isOpen={isOpen}
         placement="left"
-        onClose={onClose}
-        returnFocusOnClose={false}
-        onOverlayClick={onClose}
         size="full"
       >
         <DrawerContent>
-          <SidebarContent onClose={onClose} />
+          <SidebarContent />
         </DrawerContent>
       </Drawer>
       {/* mobilenav */}
-      <MobileNav display={{ base: "flex", md: "none" }} onOpen={onOpen} />
+      <MobileNav />
     </Box>
   );
 }
 
-const SidebarContent = ({ onClose, ...rest }) => {
-
+const SidebarContent = () => {
   return (
     <Box
       bg={"#463ef6"}
       w={{ base: "full", md: 60 }}
       pos="fixed"
       h="full"
-      {...rest}
+      display={{ base: "none", md: "block" }}
     >
       {_Points.map((ele, ind) => (
         <Step key={ele} stepNum={ind} StepTitle={ele} active={0} />
@@ -64,20 +51,9 @@ const SidebarContent = ({ onClose, ...rest }) => {
   );
 };
 
-const MobileNav = ({ onOpen, ...rest }) => {
+const MobileNav = () => {
   return (
-    <Flex
-      ml={{ base: 0, md: 60 }}
-      px={{ base: 4, md: 24 }}
-      height="20"
-      alignItems="center"
-      bg='#463ef6'
-      borderBottomWidth="1px"
-      borderBottomColor={useColorModeValue("gray.200", "gray.700")}
-      justifyContent="flex-start"
-      {...rest}
-    >
-     
+    <Flex height="20" bg='#463ef6' display={{ base: "flex", md: "none" }}>
 
     </Flex>
   );
