@@ -13,7 +13,7 @@ const Step = ({ stepNum, StepTitle }) => {
 
   let activeCss = currentFormNumber === stepNum && { backgroundColor: "#c3ddfd", color: "black", borderColor: "#c3ddfd" };
   return (
-    <Flex m={{ base: '1', md: '4' }} p={{ base: '1', md: '2' }} color="white">
+    <Flex m={{ base: '0', md: '4' }} p={{ base: '0', md: '2' }} color="white">
       <Box onClick={changeFormNumber} border="1px" borderRadius="100%"
         sx={{
           cursor: "pointer", transition: "background-color 0.3s, color 0.3s, border 0.3s", ...activeCss

@@ -1,13 +1,10 @@
 import React from "react";
 import {
-  IconButton,
   Box,
   Flex,
   useColorModeValue,
-  Text,
   Drawer,
   DrawerContent,
-  useDisclosure,
 } from "@chakra-ui/react";
 import Step from "./components/Step";
 
