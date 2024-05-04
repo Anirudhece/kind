@@ -49,7 +49,7 @@ const SidebarContent = () => {
 
 const MobileNav = () => {
   return (
-    <Flex height="20" bg='#463ef6' justifyContent='center' alignItems='center' display={{ base: "flex", md: "none" }}>
+    <Flex pb='20' height="40" bg='#463ef6' justifyContent='center' alignItems='center' display={{ base: "flex", md: "none" }}>
       {_Points.map((ele, ind) => (
         <Step key={ele} stepNum={ind} StepTitle={ele} active={0} />
       ))}

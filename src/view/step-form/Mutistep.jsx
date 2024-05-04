@@ -106,13 +106,17 @@ const Multistep = () => {
 
   return (
     <>
-      <VStack bg={{base:'purple.50',md:'none'}} h={{ base: "85vh", md: "100vh" }}>
-        <Box
-         bg={{base:'white'}}
+      <VStack
+        h={{ base: "74vh", md: "100vh" }}
+        bg={{
+          base: 'purple.50',
+          md: 'none'
+        }} >
+        <Box mt={{ base: '-20', md: '6' }}
+          bg={{ base: 'white' }}
           w={{ base: "70%", md: "60%" }}
-          mt={{ base: "2", md: "6" }}
-          p={{base:'6'}}
-          boxShadow={{ base: "lg",md:'none' }} // Adding boxShadow only for base size
+          p={{ base: '6' }}
+          boxShadow={{ base: "lg", md: 'none' }}
         >
           {renderForm[currentFormNumber]}
         </Box>
