@@ -40,9 +40,9 @@ const Multistep = () => {
     });
   };
 
-  useEffect(() => {
-    console.log(formValue);
-  }, [formValue.addOns]);
+  // useEffect(() => {
+  //   console.log(formValue);
+  // }, [formValue.addOns]);
 
   const renderForm = [
     <Form1 formValue={formValue} updateYouinfo={updateYouinfo} />,
@@ -106,16 +106,21 @@ const Multistep = () => {
 
   return (
     <>
-      <VStack h="100vh">
-        <Box w="60%" mt="6">
+      <VStack h={{ base: "87vh", md: "100vh" }}>
+        <Box w={{ base: "70%", md: "60%" }} mt={{ base: "2", md: "6" }}>
           {renderForm[currentFormNumber]}
         </Box>
 
         <Spacer />
 
-        <Flex mb="10" w="60%">
+        <Flex
+          bg={{ base: "white" }}
+          p={{ base: 2 }}
+          w={{ base: "100%", md: "60%" }}
+        >
           {currentFormNumber > 0 && (
             <Button
+              size={{ base: "sm", md: "md" }}
               onClick={() => setCounter("decrement")}
               color="gray.500"
               variant="ghost"
@@ -127,6 +132,7 @@ const Multistep = () => {
           <Spacer />
           {currentFormNumber < 3 ? (
             <Button
+              size={{ base: "sm", md: "md" }}
               bg="#463ef6"
               onClick={() => setCounter("increment")}
               colorScheme="facebook"
@@ -136,6 +142,7 @@ const Multistep = () => {
             </Button>
           ) : (
             <Button
+              size={{ base: "sm", md: "md" }}
               onClick={handleSubmit}
               bg="#463ef6"
               colorScheme="facebook"
