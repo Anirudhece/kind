@@ -60,6 +60,8 @@ const Form3 = ({ updateAddOns, formValue }) => {
       <VStack>
         {addOns.map((ele, ind) => (
           <Flex
+            mt={{ base: "2" }}
+            mv={{ base: "2" }}
             key={ind}
             p="2"
             alignItems="center"
@@ -85,12 +87,12 @@ const Form3 = ({ updateAddOns, formValue }) => {
               >
                 <Text
                   color="blue.800"
-                  fontSize={{ base: "sm", md: "lg" }}
+                  fontSize={{ base: "xs", md: "lg" }}
                   as="b"
                 >
                   {ele.title}
                 </Text>
-                <Text fontSize={{ base: "xs" }} color="gray.500">
+                <Text fontSize={{ base: "2xs" }} color="gray.500">
                   {ele.description}
                 </Text>
               </Box>
