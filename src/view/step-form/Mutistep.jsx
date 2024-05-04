@@ -107,7 +107,7 @@ const Multistep = () => {
   return (
     <>
       <VStack
-        // h={{ base: "74vh", md: "100vh" }}
+        h={{ base: "74vh", md: "100vh" }}
         bg={{
           base: 'purple.50',
           md: 'none'
