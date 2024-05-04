@@ -85,8 +85,8 @@ const Form2 = ({ updatePlan, formValue }) => {
         >
           {data.map((ele, ind) => (
             <Box
-              mt={{ base: "2", md: "0" }}
-              mb={{ base: "2", md: "0" }}
+              mt={{ base: "4", md: "0" }}
+              mb={{ base: "4", md: "0" }}
               key={ind}
               w={{ base: "100%", md: "30%" }}
               borderWidth="3px"
@@ -103,10 +103,10 @@ const Form2 = ({ updatePlan, formValue }) => {
                 ml={{ base: "2", md: "0" }}
                 mr={{ base: "6", md: "0" }}
                 display="flex"
-                mb="12"
+                mb={{ md: "12" }}
               >
                 <Text
-                  fontSize="2xl"
+                  fontSize={{ base: "l", md: "2xl" }}
                   background={ele.iconBackground}
                   p="3"
                   color="white"
@@ -116,10 +116,18 @@ const Form2 = ({ updatePlan, formValue }) => {
                 </Text>
               </Box>
               <Box>
-                <Text color="blue.800" fontSize="lg" as="b">
+                <Text
+                  color="blue.800"
+                  fontSize={{ base: "md", md: "lg" }}
+                  as="b"
+                >
                   {ele.title}
                 </Text>
-                <Text color="gray.500" fontSize="sm" colorScheme="gray">
+                <Text
+                  color="gray.500"
+                  fontSize={{ base: "xs", md: "sm" }}
+                  colorScheme="gray"
+                >
                   ${ele.price}/mo
                 </Text>
               </Box>
